@@ -1,0 +1,140 @@
+{
+  "info": {
+    "name": "Nmbrs Public REST API (HR & Payroll)",
+    "description": "Modeled Postman collection for the Visma Nmbrs public REST API. Base URL: https://api.nmbrsapp.com. Every request requires an OAuth 2.0 bearer token (Authorization Code flow via identityservice.nmbrs.com) and a per-product subscription key. Paths are modeled from the published Stoplight resource groups and the confirmed base URL / auth model (GET /api/companies returns 401 unauthenticated). Nmbrs also runs a separate legacy SOAP API (api.nmbrs.nl/soap/v3), deprecated and retiring 2027-03-01, which is not modeled here.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      { "key": "token", "value": "{{bearerToken}}", "type": "string" }
+    ]
+  },
+  "variable": [
+    { "key": "baseUrl", "value": "https://api.nmbrsapp.com", "type": "string" },
+    { "key": "bearerToken", "value": "", "type": "string" },
+    { "key": "subscriptionKey", "value": "", "type": "string" },
+    { "key": "companyId", "value": "", "type": "string" },
+    { "key": "employeeId", "value": "", "type": "string" }
+  ],
+  "item": [
+    {
+      "name": "Companies",
+      "item": [
+        {
+          "name": "List companies",
+          "request": {
+            "method": "GET",
+            "header": [{ "key": "X-Subscription-Key", "value": "{{subscriptionKey}}" }],
+            "url": { "raw": "{{baseUrl}}/api/companies", "host": ["{{baseUrl}}"], "path": ["api", "companies"] },
+            "description": "Lists the companies (employers) accessible to the subscription. Confirmed live endpoint."
+          }
+        },
+        {
+          "name": "List company payruns",
+          "request": {
+            "method": "GET",
+            "header": [{ "key": "X-Subscription-Key", "value": "{{subscriptionKey}}" }],
+            "url": { "raw": "{{baseUrl}}/api/companies/:companyId/payruns", "host": ["{{baseUrl}}"], "path": ["api", "companies", ":companyId", "payruns"], "variable": [{ "key": "companyId", "value": "{{companyId}}" }] },
+            "description": "Lists payroll runs for a company (modeled path)."
+          }
+        }
+      ]
+    },
+    {
+      "name": "Employees",
+      "item": [
+        {
+          "name": "Get employee list",
+          "request": {
+            "method": "GET",
+            "header": [{ "key": "X-Subscription-Key", "value": "{{subscriptionKey}}" }],
+            "url": { "raw": "{{baseUrl}}/api/companies/:companyId/employees", "host": ["{{baseUrl}}"], "path": ["api", "companies", ":companyId", "employees"], "variable": [{ "key": "companyId", "value": "{{companyId}}" }] },
+            "description": "Lists the employees belonging to a company (modeled path)."
+          }
+        },
+        {
+          "name": "Get an employee",
+          "request": {
+            "method": "GET",
+            "header": [{ "key": "X-Subscription-Key", "value": "{{subscriptionKey}}" }],
+            "url": { "raw": "{{baseUrl}}/api/employees/:employeeId", "host": ["{{baseUrl}}"], "path": ["api", "employees", ":employeeId"], "variable": [{ "key": "employeeId", "value": "{{employeeId}}" }] },
+            "description": "Retrieves a single employee including personal information (modeled path)."
+          }
+        },
+        {
+          "name": "List employments",
+          "request": {
+            "method": "GET",
+            "header": [{ "key": "X-Subscription-Key", "value": "{{subscriptionKey}}" }],
+            "url": { "raw": "{{baseUrl}}/api/employees/:employeeId/employments", "host": ["{{baseUrl}}"], "path": ["api", "employees", ":employeeId", "employments"], "variable": [{ "key": "employeeId", "value": "{{employeeId}}" }] },
+            "description": "Lists employment contracts and history for an employee (modeled path)."
+          }
+        }
+      ]
+    },
+    {
+      "name": "Payroll",
+      "item": [
+        {
+          "name": "List salaries",
+          "request": {
+            "method": "GET",
+            "header": [{ "key": "X-Subscription-Key", "value": "{{subscriptionKey}}" }],
+            "url": { "raw": "{{baseUrl}}/api/employees/:employeeId/salaries", "host": ["{{baseUrl}}"], "path": ["api", "employees", ":employeeId", "salaries"], "variable": [{ "key": "employeeId", "value": "{{employeeId}}" }] },
+            "description": "Lists salary records for an employee (modeled path)."
+          }
+        },
+        {
+          "name": "List wage components",
+          "request": {
+            "method": "GET",
+            "header": [{ "key": "X-Subscription-Key", "value": "{{subscriptionKey}}" }],
+            "url": { "raw": "{{baseUrl}}/api/employees/:employeeId/wagecomponents", "host": ["{{baseUrl}}"], "path": ["api", "employees", ":employeeId", "wagecomponents"], "variable": [{ "key": "employeeId", "value": "{{employeeId}}" }] },
+            "description": "Lists fixed and variable wage components for an employee (modeled path)."
+          }
+        },
+        {
+          "name": "Add a wage component",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "X-Subscription-Key", "value": "{{subscriptionKey}}" }
+            ],
+            "body": { "mode": "raw", "raw": "{\n  \"code\": 1000,\n  \"value\": 100.0,\n  \"kind\": \"fixed\",\n  \"period\": 1,\n  \"year\": 2026\n}" },
+            "url": { "raw": "{{baseUrl}}/api/employees/:employeeId/wagecomponents", "host": ["{{baseUrl}}"], "path": ["api", "employees", ":employeeId", "wagecomponents"], "variable": [{ "key": "employeeId", "value": "{{employeeId}}" }] },
+            "description": "Adds a fixed or variable wage component to an employee (modeled path)."
+          }
+        }
+      ]
+    },
+    {
+      "name": "Absences",
+      "item": [
+        {
+          "name": "List absences",
+          "request": {
+            "method": "GET",
+            "header": [{ "key": "X-Subscription-Key", "value": "{{subscriptionKey}}" }],
+            "url": { "raw": "{{baseUrl}}/api/employees/:employeeId/absences", "host": ["{{baseUrl}}"], "path": ["api", "employees", ":employeeId", "absences"], "variable": [{ "key": "employeeId", "value": "{{employeeId}}" }] },
+            "description": "Lists absence, leave, and sickness registrations for an employee (modeled path)."
+          }
+        },
+        {
+          "name": "Register an absence",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "X-Subscription-Key", "value": "{{subscriptionKey}}" }
+            ],
+            "body": { "mode": "raw", "raw": "{\n  \"type\": \"sickness\",\n  \"percentage\": 100,\n  \"startDate\": \"2026-07-11\"\n}" },
+            "url": { "raw": "{{baseUrl}}/api/employees/:employeeId/absences", "host": ["{{baseUrl}}"], "path": ["api", "employees", ":employeeId", "absences"], "variable": [{ "key": "employeeId", "value": "{{employeeId}}" }] },
+            "description": "Registers a new absence for an employee (modeled path)."
+          }
+        }
+      ]
+    }
+  ]
+}

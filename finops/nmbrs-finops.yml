@@ -1,0 +1,84 @@
+specification: FinOps Framework
+specificationVersion: '1.0'
+schema: https://www.finops.org/framework/
+provider: Nmbrs
+providerId: nmbrs
+created: '2026-07-11'
+modified: '2026-07-11'
+reconciled: false
+tags:
+- Human Resources
+- HRIS
+- Payroll
+- FinOps
+- Cost Management
+- FOCUS
+description: >-
+  FinOps view of Nmbrs spend. Nmbrs is billed per payslip - you pay only for
+  employees who actually receive a payslip in a given month, with no charge for
+  inactive employees and no per-login or per-user fees. Business packages
+  (Essential, Advanced, Advanced Pro) and a separate accountant / payroll
+  service provider track set the per-payslip rate and included features, and
+  differ by country (Netherlands in EUR, Sweden in SEK). API access - both the
+  REST API and the legacy SOAP API - is included with a subscription and is not
+  metered as a separate line item.
+notes: >-
+  Per-payslip unit rates are published on the Nmbrs country pricing pages and
+  are not reconciled here. The dominant cost driver is the count of paid
+  payslips per month, so headcount and payroll frequency are the levers.
+sources:
+- https://www.nmbrs.com/business/pricing
+- https://www.nmbrs.com/accountant/pricing
+- https://developer.nmbrs.com/docs
+- https://focus.finops.org/focus-specification/v1-3/
+alignedWith:
+  framework: FinOps Foundation Framework
+  frameworkUrl: https://www.finops.org/framework/
+  dataSpec: FOCUS
+  dataSpecVersion: '1.3'
+  dataSpecUrl: https://focus.finops.org/focus-specification/v1-3/
+publisherName: Nmbrs
+serviceCategory: HR and Payroll Software
+billingModel:
+  pricingCategory: Usage-Based
+  billingFrequency: Monthly
+  billingCurrency: EUR
+  chargeCategories:
+  - Usage
+  - Purchase
+focusColumns:
+  ServiceName: Nmbrs
+  ServiceCategory: HR and Payroll Software
+  ProviderName: Nmbrs
+  PublisherName: Visma Nmbrs
+  InvoiceIssuerName: Nmbrs
+  BillingCurrency: EUR
+  ChargeCategory: Usage
+  PricingCategory: Usage-Based
+meters:
+- name: payslips
+  description: Payslips actually issued to employees in a billing month - the primary billing unit.
+  unit: payslips
+  aggregation: sum
+  dimensions:
+  - company
+  - package
+  - country
+- name: companies
+  description: Companies (employers) managed, relevant to accountant / service-provider volume tiers.
+  unit: companies
+  aggregation: sum
+  dimensions:
+  - debtor
+principles:
+- name: Visibility
+  description: Track paid payslips per company and per month; API-driven headcount changes directly move spend.
+- name: Allocation
+  description: Map companies and packages to internal cost centers or client accounts (for accountants/service providers).
+- name: Optimization
+  description: Because billing is per issued payslip, keeping employee records accurate (offboarding leavers) avoids paying for payslips you do not need; there is no charge for inactive employees left in the system.
+- name: Accountability
+  description: Assign owners per company/package; review monthly payslip counts against expected headcount.
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

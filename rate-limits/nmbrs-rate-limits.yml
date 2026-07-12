@@ -1,0 +1,53 @@
+specification: API Commons Rate Limits
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/RateLimits
+provider: Nmbrs
+providerId: nmbrs
+created: '2026-07-11'
+modified: '2026-07-11'
+reconciled: false
+tags:
+- Human Resources
+- HRIS
+- Payroll
+- Rate Limiting
+- Quotas
+description: >-
+  Nmbrs does not publish fixed numeric per-minute rate limits for its public
+  API. On the REST API, throughput is governed by your subscription product /
+  tier - development (sandbox) subscriptions are more constrained than
+  production subscriptions - and clients should handle throttling responses. The
+  legacy SOAP API operates under a fair-use policy rather than a documented
+  hard limit. Exact numeric caps are not published as of the review date.
+notes: >-
+  Numeric per-endpoint or per-subscription request limits are not documented.
+  Confirm any tier-specific quotas in the Nmbrs developer portal and the
+  Stoplight reference at reconciliation. Values here reflect the documented
+  qualitative model, not reconciled numbers.
+sources:
+- https://developer.nmbrs.com/docs
+- https://www.nmbrs.com/building-a-nmbrs-integration
+- https://nmbrs.stoplight.io/docs/nmbrs-restapi
+responseCodes:
+  throttled: 429
+limits:
+- name: REST API Requests
+  scope: subscription
+  metric: requests
+  limit: tier-based (not published)
+  notes: Governed by the subscribed product/tier (development vs production); no fixed numeric cap is documented.
+- name: SOAP API Requests
+  scope: account
+  metric: requests
+  limit: fair-use (not published)
+  notes: Legacy SOAP v3 operates under a fair-use policy; no strict documented limit. SOAP retiring 2027-03-01.
+policies:
+- name: Fair Use
+  description: The legacy SOAP API is bounded by a fair-use policy rather than a fixed request-rate limit.
+- name: Backoff Strategy
+  description: Clients should implement exponential backoff with jitter and honor Retry-After on 429 responses.
+- name: Poll Efficiently
+  description: With no server-push transport, integrations poll the REST API; use appropriate intervals and filters to avoid unnecessary requests.
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

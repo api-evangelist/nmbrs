@@ -1,0 +1,103 @@
+aid: nmbrs
+name: Nmbrs
+review:
+  question: Does Nmbrs expose a documented public WebSocket API?
+  answer: false
+  date: '2026-07-11'
+  reviewer: API Evangelist
+  asyncapiSpecCreated: false
+  asyncapiScopeNote: |
+    No AsyncAPI document was authored. Nmbrs' public API surface is
+    request/response only: a modern REST API over HTTPS (api.nmbrsapp.com) and a
+    legacy SOAP/HTTP API (api.nmbrs.nl/soap/v3). Neither exposes a server-push
+    transport (WebSocket or SSE). Near-real-time integration with Nmbrs is done
+    by polling the REST endpoints, not by subscribing to a socket, so there is
+    no event-driven interface to model.
+findings:
+  summary: |
+    Nmbrs (Visma Nmbrs) does not publish a documented public WebSocket API.
+    Nmbrs is cloud HR and payroll software for the Netherlands and Sweden. Its
+    public API exists in two generations. The current REST API is served from
+    https://api.nmbrsapp.com, authenticated with OAuth 2.0 Authorization Code
+    flow (identityservice.nmbrs.com) plus a per-product subscription key, and
+    covers companies, employees, employments, salaries, wage components,
+    payruns, and absences. The legacy SOAP API (https://api.nmbrs.nl/soap/v3)
+    offers EmployeeService, CompanyService, and DebtorService with several
+    hundred operations, authenticated with a username + API token; it is
+    deprecated and scheduled to be retired on 1 March 2027. Both are pure
+    request/response HTTP. No realtime, bidirectional, or streaming WebSocket
+    (ws:// or wss://) endpoint is documented anywhere in the Nmbrs developer
+    portal, Stoplight reference, or SOAP service definitions.
+  accessModel: |
+    The REST API is gated: developers must register on the Nmbrs developer
+    portal, subscribe to a product to obtain a subscription key, and complete
+    OAuth 2.0 Authorization Code authentication at the company/debtor level. A
+    live unauthenticated probe of GET https://api.nmbrsapp.com/api/companies
+    returns HTTP 401, confirming the base URL and auth model. The full endpoint
+    reference is published as an interactive Stoplight project rather than a
+    downloadable OpenAPI file, so the REST paths and schemas in this repository
+    are modeled from the documented resource groups (endpointsModeled) around a
+    confirmed base URL and auth model. The SOAP services publish live .asmx
+    operation listings and WSDLs at api.nmbrs.nl/soap/v3.
+  transports:
+    - protocol: REST
+      scheme: https
+      baseURL: https://api.nmbrsapp.com
+      documented: true
+      note: Current public REST API. OAuth 2.0 Authorization Code + subscription key. Endpoint reference published on Stoplight.
+    - protocol: SOAP
+      scheme: https
+      baseURL: https://api.nmbrs.nl/soap/v3
+      documented: true
+      note: Legacy SOAP v3 (EmployeeService, CompanyService, DebtorService). Username + API token. Deprecated, retiring 2027-03-01.
+    - protocol: WebSocket
+      scheme: wss
+      documented: false
+      note: No WebSocket endpoint is documented in the developer portal, Stoplight reference, or SOAP service definitions as of the review date.
+  endpointsConfirmedRest:
+    - GET https://api.nmbrsapp.com/api/companies
+  endpointsModeledRest:
+    - GET  https://api.nmbrsapp.com/api/companies/{companyId}/employees
+    - GET  https://api.nmbrsapp.com/api/employees/{employeeId}
+    - GET  https://api.nmbrsapp.com/api/employees/{employeeId}/employments
+    - GET  https://api.nmbrsapp.com/api/employees/{employeeId}/salaries
+    - GET  https://api.nmbrsapp.com/api/employees/{employeeId}/wagecomponents
+    - POST https://api.nmbrsapp.com/api/employees/{employeeId}/wagecomponents
+    - GET  https://api.nmbrsapp.com/api/companies/{companyId}/payruns
+    - GET  https://api.nmbrsapp.com/api/employees/{employeeId}/absences
+    - POST https://api.nmbrsapp.com/api/employees/{employeeId}/absences
+  soapServicesConfirmed:
+    - https://api.nmbrs.nl/soap/v3/EmployeeService.asmx
+    - https://api.nmbrs.nl/soap/v3/CompanyService.asmx
+    - https://api.nmbrs.nl/soap/v3/DebtorService.asmx
+sources:
+  - url: https://developer.nmbrs.com/docs
+    type: Documentation
+    note: Nmbrs developer portal - REST onboarding, subscription key, OAuth.
+  - url: https://nmbrs.stoplight.io/docs/nmbrs-restapi/c12kru12jawkz-current-state-of-the-nmbrs-rest-api
+    type: Documentation
+    note: Current state of the REST API; SOAP deprecation and REST-first direction.
+  - url: https://nmbrs.stoplight.io/docs/nmbrs-restapi/ZG9jOjE5Nzc1OTky-getting-started
+    type: Documentation
+    note: Getting started; subscribe to a product for a subscription key, OAuth 2.0 Authorization Code flow.
+  - url: https://www.nmbrs.com/building-a-nmbrs-integration
+    type: Documentation
+    note: REST vs SOAP status, OAuth at company/debtor level, SOAP retiring 2027-03-01.
+  - url: https://api.nmbrs.nl/soap/v3/EmployeeService.asmx
+    type: APIReference
+    note: Live SOAP EmployeeService operation listing (Employee_*, Contract_*, Salary_*, Absence2_*, WageComponent*).
+  - url: https://api.nmbrs.nl/soap/v3/CompanyService.asmx
+    type: APIReference
+    note: Live SOAP CompanyService operation listing (Company_*, Run_*, SalaryDocuments_*, WageTax_*).
+  - url: https://api.nmbrs.nl/soap/v3/DebtorService.asmx
+    type: APIReference
+    note: Live SOAP DebtorService operation listing (Debtor_*, AccountantContact_*).
+actions:
+  asyncapiPath: null
+  apisYmlUpdated: true
+  reason: |
+    No WebSocket protocol surface exists. Nmbrs' own public API is
+    request/response REST (api.nmbrsapp.com) plus a deprecated request/response
+    SOAP API (api.nmbrs.nl/soap/v3). No AsyncAPI document was created because
+    there is no server-push transport on Nmbrs' API to model; integrations poll
+    the REST endpoints.

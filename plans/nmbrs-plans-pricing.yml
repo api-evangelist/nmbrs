@@ -1,0 +1,125 @@
+specification: API Commons Plans
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/Plans
+provider: Nmbrs
+providerId: nmbrs
+created: '2026-07-11'
+modified: '2026-07-11'
+reconciled: false
+tags:
+- Human Resources
+- HRIS
+- Payroll
+- Employee Management
+- Plans
+description: >-
+  Nmbrs sells HR and payroll software on a per-payslip basis - you pay only for
+  employees who actually receive a payslip in a given month, with no charge for
+  inactive employees, no per-login or per-user fees, and support, updates, and
+  HR features included. Product packages are Essential, Advanced, and Advanced
+  Pro. Country pricing differs: in the Netherlands the business package starts
+  around EUR 69/month for small companies (up to 10 employees); in Sweden the
+  business package starts around 99 kr/month for small companies. There is also
+  a separate pricing track for accountants / payroll service providers. The
+  public REST API and legacy SOAP API are included with a Nmbrs subscription -
+  API access is not billed as a separate metered product; you subscribe to a
+  product in the developer portal to obtain a subscription key.
+notes: >-
+  Per-payslip unit rates and exact package contents are published on the Nmbrs
+  pricing pages and vary by country and package; verify at reconciliation.
+  Amounts below are directional starting prices, not reconciled per-unit rates.
+sources:
+- https://www.nmbrs.com/business/pricing
+- https://www.nmbrs.com/accountant/pricing
+- https://developer.nmbrs.com/docs
+plans:
+- id: nmbrs-essential
+  name: Essential
+  type: paid
+  description: >-
+    Entry business package covering core payroll and HR with per-payslip
+    billing. NL business pricing starts around EUR 69/month for up to 10
+    employees; Sweden starts around 99 kr/month for small companies.
+  entries:
+  - label: Per Payslip
+    name: per_payslip
+    type: usage
+    metric: payslips
+    limit: -1
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: per-payslip (see country pricing page); NL from ~EUR 69/mo, SE from ~99 kr/mo
+    userMultiplied: true
+  elements:
+  - name: Payroll Processing
+  - name: Payslips
+  - name: Core HR
+  - name: REST and SOAP API Access
+- id: nmbrs-advanced
+  name: Advanced
+  type: paid
+  description: >-
+    Mid-tier business package adding broader HR functionality on the same
+    per-payslip model.
+  entries:
+  - label: Per Payslip
+    name: per_payslip
+    type: usage
+    metric: payslips
+    limit: -1
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: per-payslip (see country pricing page)
+    userMultiplied: true
+  elements:
+  - name: Everything in Essential
+  - name: Extended HR
+  - name: Absence Management
+  - name: REST and SOAP API Access
+- id: nmbrs-advanced-pro
+  name: Advanced Pro
+  type: paid
+  description: >-
+    Top business package with the fullest HR and payroll feature set, on the
+    per-payslip model.
+  entries:
+  - label: Per Payslip
+    name: per_payslip
+    type: usage
+    metric: payslips
+    limit: -1
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: per-payslip (see country pricing page)
+    userMultiplied: true
+  elements:
+  - name: Everything in Advanced
+  - name: Full HR Suite
+  - name: REST and SOAP API Access
+- id: nmbrs-accountant
+  name: Accountant / Payroll Service Provider
+  type: enterprise
+  description: >-
+    Separate pricing track for accountants and payroll service providers that
+    run payroll on behalf of many client companies (debtor tier). Contact Nmbrs.
+  entries:
+  - label: Per Payslip (volume)
+    name: accountant_per_payslip
+    type: usage
+    metric: payslips
+    limit: -1
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: volume per-payslip / contact sales
+    userMultiplied: true
+  elements:
+  - name: Multi-Company Management
+  - name: Debtor / Accountant Tier
+  - name: REST and SOAP API Access
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

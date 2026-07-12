@@ -1,0 +1,48 @@
+generated: '2026-07-11'
+method: documented
+source: https://developer.nmbrs.com/docs
+summary:
+  types:
+  - oauth2
+  - apiKey
+  - soap-token
+schemes:
+- name: oauth2
+  type: oauth2
+  flow: authorizationCode
+  authorizationUrl: https://identityservice.nmbrs.com/connect/authorize
+  tokenUrl: https://identityservice.nmbrs.com/connect/token
+  description: >-
+    The current Nmbrs REST API uses the OAuth 2.0 Authorization Code flow.
+    Authorization happens at the company/debtor level (not accountant login).
+    Access is scoped with granular OAuth scopes.
+  scopes:
+  - employee.info
+  - employee.info.read
+  - employee.employment
+  - employee.employment.read
+  - employee.payment
+  sources:
+  - https://developer.nmbrs.com/docs
+  - https://nmbrs.stoplight.io/docs/nmbrs-restapi/ZG9jOjY4OTAxNTQ-authentication
+- name: subscriptionKey
+  type: apiKey
+  in: header
+  description: >-
+    In addition to the OAuth bearer token, every REST request must carry a
+    per-product subscription key generated when you subscribe to a product in
+    the Nmbrs developer portal. Modeled here on an X-Subscription-Key header;
+    confirm the exact header name in the Stoplight reference.
+  sources:
+  - https://developer.nmbrs.com/docs
+  - https://nmbrs.stoplight.io/docs/nmbrs-restapi/ZG9jOjE5Nzc1OTky-getting-started
+- name: soapToken
+  type: apiKey
+  scheme: soap-header
+  description: >-
+    The legacy SOAP v3 API authenticates with a username plus an API token
+    passed in the SOAP AuthHeader. Deprecated; the SOAP API is scheduled to be
+    retired on 1 March 2027.
+  sources:
+  - https://support.nmbrs.nl/hc/nl/articles/205903718-Nmbrs-API-for-developers
+  - https://api.nmbrs.nl/soap/v3/EmployeeService.asmx

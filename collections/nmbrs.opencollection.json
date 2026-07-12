@@ -1,0 +1,141 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Nmbrs Public REST API (HR & Payroll)",
+    "version": "1.0-modeled"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": { "name": "Companies", "type": "folder" },
+      "items": [
+        {
+          "info": { "name": "List companies.", "type": "http" },
+          "http": { "method": "GET", "url": "https://api.nmbrsapp.com/api/companies" },
+          "docs": "Lists the companies (employers) accessible to the subscription. Confirmed live endpoint (401 unauthenticated)."
+        },
+        {
+          "info": { "name": "List company payruns.", "type": "http" },
+          "http": {
+            "method": "GET",
+            "url": "https://api.nmbrsapp.com/api/companies/:companyId/payruns",
+            "params": [
+              { "name": "companyId", "value": "", "type": "path", "description": "The company identifier." }
+            ]
+          },
+          "docs": "Lists payroll runs for a company (modeled path)."
+        }
+      ]
+    },
+    {
+      "info": { "name": "Employees", "type": "folder" },
+      "items": [
+        {
+          "info": { "name": "Get employee list.", "type": "http" },
+          "http": {
+            "method": "GET",
+            "url": "https://api.nmbrsapp.com/api/companies/:companyId/employees",
+            "params": [
+              { "name": "companyId", "value": "", "type": "path", "description": "The company identifier." }
+            ]
+          },
+          "docs": "Lists the employees belonging to a company (modeled path)."
+        },
+        {
+          "info": { "name": "Get an employee.", "type": "http" },
+          "http": {
+            "method": "GET",
+            "url": "https://api.nmbrsapp.com/api/employees/:employeeId",
+            "params": [
+              { "name": "employeeId", "value": "", "type": "path", "description": "The employee identifier." }
+            ]
+          },
+          "docs": "Retrieves a single employee including personal information (modeled path)."
+        },
+        {
+          "info": { "name": "List employments.", "type": "http" },
+          "http": {
+            "method": "GET",
+            "url": "https://api.nmbrsapp.com/api/employees/:employeeId/employments",
+            "params": [
+              { "name": "employeeId", "value": "", "type": "path", "description": "The employee identifier." }
+            ]
+          },
+          "docs": "Lists employment contracts and history for an employee (modeled path)."
+        }
+      ]
+    },
+    {
+      "info": { "name": "Payroll", "type": "folder" },
+      "items": [
+        {
+          "info": { "name": "List salaries.", "type": "http" },
+          "http": {
+            "method": "GET",
+            "url": "https://api.nmbrsapp.com/api/employees/:employeeId/salaries",
+            "params": [
+              { "name": "employeeId", "value": "", "type": "path", "description": "The employee identifier." }
+            ]
+          },
+          "docs": "Lists salary records for an employee (modeled path)."
+        },
+        {
+          "info": { "name": "List wage components.", "type": "http" },
+          "http": {
+            "method": "GET",
+            "url": "https://api.nmbrsapp.com/api/employees/:employeeId/wagecomponents",
+            "params": [
+              { "name": "employeeId", "value": "", "type": "path", "description": "The employee identifier." }
+            ]
+          },
+          "docs": "Lists fixed and variable wage components for an employee (modeled path)."
+        },
+        {
+          "info": { "name": "Add a wage component.", "type": "http" },
+          "http": {
+            "method": "POST",
+            "url": "https://api.nmbrsapp.com/api/employees/:employeeId/wagecomponents",
+            "params": [
+              { "name": "employeeId", "value": "", "type": "path", "description": "The employee identifier." }
+            ],
+            "body": { "type": "json", "data": "{\"code\":1000,\"value\":100.0,\"kind\":\"fixed\",\"period\":1,\"year\":2026}" }
+          },
+          "docs": "Adds a fixed or variable wage component to an employee (modeled path)."
+        }
+      ]
+    },
+    {
+      "info": { "name": "Absences", "type": "folder" },
+      "items": [
+        {
+          "info": { "name": "List absences.", "type": "http" },
+          "http": {
+            "method": "GET",
+            "url": "https://api.nmbrsapp.com/api/employees/:employeeId/absences",
+            "params": [
+              { "name": "employeeId", "value": "", "type": "path", "description": "The employee identifier." }
+            ]
+          },
+          "docs": "Lists absence, leave, and sickness registrations for an employee (modeled path)."
+        },
+        {
+          "info": { "name": "Register an absence.", "type": "http" },
+          "http": {
+            "method": "POST",
+            "url": "https://api.nmbrsapp.com/api/employees/:employeeId/absences",
+            "params": [
+              { "name": "employeeId", "value": "", "type": "path", "description": "The employee identifier." }
+            ],
+            "body": { "type": "json", "data": "{\"type\":\"sickness\",\"percentage\":100,\"startDate\":\"2026-07-11\"}" }
+          },
+          "docs": "Registers a new absence for an employee (modeled path)."
+        }
+      ]
+    }
+  ]
+}
