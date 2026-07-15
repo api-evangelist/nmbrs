@@ -242,6 +242,8 @@ apis:
     companies (e.g. AccountantContact_GetList, Debtor_GetList). Deprecated -
     retiring 1 March 2027 in favor of the REST API.
 common:
+- type: AgenticAccess
+  url: agentic-access/nmbrs-agentic-access.yml
 - type: Authentication
   url: authentication/nmbrs-authentication.yml
 - type: DomainSecurity
