@@ -14,7 +14,20 @@ description: >-
   EmployeeService, CompanyService, DebtorService) remains available for existing
   integrations but is deprecated and scheduled to be retired on 1 March 2027,
   after which REST is the only supported API.
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+accessModel:
+  pricing: paid
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Paid · Self-serve signup
+  confidence: high
+  source:
+  - plans
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/nmbrs.png
 tags:
 - Human Resources
 - HRIS
@@ -30,155 +43,6 @@ created: '2026-07-11'
 modified: '2026-07-11'
 specificationVersion: '0.19'
 apis:
-- aid: nmbrs:nmbrs-companies-api
-  name: Nmbrs Companies API
-  tags:
-  - Human Resources
-  - Companies
-  - Employer
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-  humanURL: https://developer.nmbrs.com/docs
-  baseURL: https://api.nmbrsapp.com
-  properties:
-  - url: https://developer.nmbrs.com/docs
-    type: Documentation
-  - url: https://nmbrs.stoplight.io/docs/nmbrs-restapi
-    type: APIReference
-  - url: openapi/nmbrs-openapi.yml
-    type: OpenAPI
-  - url: collections/nmbrs.postman_collection.json
-    type: PostmanCollection
-  - url: collections/nmbrs.opencollection.json
-    type: OpenCollection
-  description: >-
-    REST access to the companies (employers) inside a Nmbrs environment - list
-    the companies accessible to the subscription and use them as the parent
-    scope for employees, payruns, and payroll data. GET
-    https://api.nmbrsapp.com/api/companies is a confirmed live endpoint (returns
-    401 without OAuth token + subscription key).
-- aid: nmbrs:nmbrs-employees-api
-  name: Nmbrs Employees API
-  tags:
-  - Human Resources
-  - HRIS
-  - Employee Management
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-  humanURL: https://nmbrs.stoplight.io/docs/nmbrs-restapi/a31578b069764-get-employee-list
-  baseURL: https://api.nmbrsapp.com
-  properties:
-  - url: https://developer.nmbrs.com/docs
-    type: Documentation
-  - url: https://nmbrs.stoplight.io/docs/nmbrs-restapi/a31578b069764-get-employee-list
-    type: APIReference
-  - url: openapi/nmbrs-openapi.yml
-    type: OpenAPI
-  - url: collections/nmbrs.postman_collection.json
-    type: PostmanCollection
-  - url: collections/nmbrs.opencollection.json
-    type: OpenCollection
-  description: >-
-    Core HRIS surface - list a company's employees and read individual employee
-    records including personal information (name, date of birth, contact
-    details). Guarded by the employee.info and employee.info.read OAuth scopes.
-    Endpoint paths are modeled from the published Stoplight resource groups.
-- aid: nmbrs:nmbrs-employments-api
-  name: Nmbrs Employments API
-  tags:
-  - Human Resources
-  - Employment
-  - Contracts
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-  humanURL: https://nmbrs.stoplight.io/docs/nmbrs-restapi
-  baseURL: https://api.nmbrsapp.com
-  properties:
-  - url: https://developer.nmbrs.com/docs
-    type: Documentation
-  - url: https://nmbrs.stoplight.io/docs/nmbrs-restapi
-    type: APIReference
-  - url: openapi/nmbrs-openapi.yml
-    type: OpenAPI
-  - url: collections/nmbrs.postman_collection.json
-    type: PostmanCollection
-  - url: collections/nmbrs.opencollection.json
-    type: OpenCollection
-  description: >-
-    Employment contracts and employment history for an employee - start/end
-    dates and contract type - under the employee.employment scope. Endpoints
-    modeled from documented resource groups (endpointsModeled).
-- aid: nmbrs:nmbrs-payroll-api
-  name: Nmbrs Payroll & Payruns API
-  tags:
-  - Payroll
-  - Payruns
-  - Wage
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-  humanURL: https://nmbrs.stoplight.io/docs/nmbrs-restapi
-  baseURL: https://api.nmbrsapp.com
-  properties:
-  - url: https://developer.nmbrs.com/docs
-    type: Documentation
-  - url: https://nmbrs.stoplight.io/docs/nmbrs-restapi
-    type: APIReference
-  - url: openapi/nmbrs-openapi.yml
-    type: OpenAPI
-  - url: collections/nmbrs.postman_collection.json
-    type: PostmanCollection
-  - url: collections/nmbrs.opencollection.json
-    type: OpenCollection
-  description: >-
-    Payroll data - list a company's payruns (per period/year) and read employee
-    salaries - the engine behind Nmbrs per-payslip billing. Salary access is
-    guarded by the employee.payment scope. Endpoints modeled from documented
-    resource groups (endpointsModeled).
-- aid: nmbrs:nmbrs-wage-components-api
-  name: Nmbrs Wage Components API
-  tags:
-  - Payroll
-  - Wage Components
-  - Compensation
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-  humanURL: https://nmbrs.stoplight.io/docs/nmbrs-restapi
-  baseURL: https://api.nmbrsapp.com
-  properties:
-  - url: https://developer.nmbrs.com/docs
-    type: Documentation
-  - url: https://nmbrs.stoplight.io/docs/nmbrs-restapi
-    type: APIReference
-  - url: openapi/nmbrs-openapi.yml
-    type: OpenAPI
-  - url: collections/nmbrs.postman_collection.json
-    type: PostmanCollection
-  - url: collections/nmbrs.opencollection.json
-    type: OpenCollection
-  description: >-
-    Fixed and variable wage components applied to an employee in payroll - list
-    existing components and add new ones per period/year. Modeled from the
-    documented wage-component resource group and the SOAP
-    WageComponentFixed/WageComponentVar operations (endpointsModeled).
-- aid: nmbrs:nmbrs-absences-api
-  name: Nmbrs Absences API
-  tags:
-  - Human Resources
-  - Absence Management
-  - Leave
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-  humanURL: https://nmbrs.stoplight.io/docs/nmbrs-restapi
-  baseURL: https://api.nmbrsapp.com
-  properties:
-  - url: https://developer.nmbrs.com/docs
-    type: Documentation
-  - url: https://nmbrs.stoplight.io/docs/nmbrs-restapi
-    type: APIReference
-  - url: openapi/nmbrs-openapi.yml
-    type: OpenAPI
-  - url: collections/nmbrs.postman_collection.json
-    type: PostmanCollection
-  - url: collections/nmbrs.opencollection.json
-    type: OpenCollection
-  description: >-
-    Employee absence, leave, and sickness registrations - list existing records
-    and register new absences. Modeled from the documented absence resource
-    group and the SOAP Absence2 operations (endpointsModeled).
 - aid: nmbrs:nmbrs-soap-employee-service
   name: Nmbrs SOAP EmployeeService (Legacy)
   tags:
@@ -196,10 +60,9 @@ apis:
   - url: https://api.nmbrs.nl/soap/v3/EmployeeService.asmx?WSDL
     type: WSDL
   description: >-
-    Legacy SOAP v3 EmployeeService (300+ operations, e.g. Employee_GetCurrent,
-    Contract_GetAll, Salary_GetCurrent, Absence2_Insert, WageComponentFixed_Insert)
-    authenticated with a username + API token. Deprecated - Nmbrs SOAP API is
-    scheduled to be retired on 1 March 2027; migrate to the REST API.
+    Legacy SOAP v3 EmployeeService (300+ operations, e.g. Employee_GetCurrent, Contract_GetAll, Salary_GetCurrent,
+    Absence2_Insert, WageComponentFixed_Insert) authenticated with a username + API token. Deprecated
+    - Nmbrs SOAP API is scheduled to be retired on 1 March 2027; migrate to the REST API.
 - aid: nmbrs:nmbrs-soap-company-service
   name: Nmbrs SOAP CompanyService (Legacy)
   tags:
@@ -217,10 +80,9 @@ apis:
   - url: https://api.nmbrs.nl/soap/v3/CompanyService.asmx?WSDL
     type: WSDL
   description: >-
-    Legacy SOAP v3 CompanyService (120+ operations, e.g. Company_GetCurrentPeriod,
-    Run_GetList, RunRequest_Insert, SalaryDocuments_GetAllPayslipsPDFByRunCompany,
-    Journals_GetByRunCompany, WageTax_GetList) for company-level payroll,
-    journals, and payslip documents. Deprecated - retiring 1 March 2027.
+    Legacy SOAP v3 CompanyService (120+ operations, e.g. Company_GetCurrentPeriod, Run_GetList, RunRequest_Insert,
+    SalaryDocuments_GetAllPayslipsPDFByRunCompany, Journals_GetByRunCompany, WageTax_GetList) for company-level
+    payroll, journals, and payslip documents. Deprecated - retiring 1 March 2027.
 - aid: nmbrs:nmbrs-soap-debtor-service
   name: Nmbrs SOAP DebtorService (Legacy)
   tags:
@@ -238,9 +100,148 @@ apis:
   - url: https://api.nmbrs.nl/soap/v3/DebtorService.asmx?WSDL
     type: WSDL
   description: >-
-    Legacy SOAP v3 DebtorService for the accountant/debtor tier that owns
-    companies (e.g. AccountantContact_GetList, Debtor_GetList). Deprecated -
-    retiring 1 March 2027 in favor of the REST API.
+    Legacy SOAP v3 DebtorService for the accountant/debtor tier that owns companies (e.g. AccountantContact_GetList,
+    Debtor_GetList). Deprecated - retiring 1 March 2027 in favor of the REST API.
+- aid: nmbrs:nmbrs-absences-api
+  name: Nmbrs Absences API
+  description: Employee absence, leave, and sickness registrations.
+  humanURL: https://developer.nmbrs.com/docs
+  baseURL: https://api.nmbrsapp.com
+  tags:
+  - Absences
+  properties:
+  - type: OpenAPI
+    url: openapi/nmbrs-absences-api-openapi.yml
+  - type: Documentation
+    url: https://developer.nmbrs.com/docs
+  - type: APIReference
+    url: https://nmbrs.stoplight.io/docs/nmbrs-restapi
+  - type: PostmanCollection
+    url: collections/nmbrs.postman_collection.json
+  - type: OpenCollection
+    url: collections/nmbrs.opencollection.json
+  - type: APIReference
+    url: https://nmbrs.stoplight.io/docs/nmbrs-restapi/a31578b069764-get-employee-list
+- aid: nmbrs:nmbrs-companies-api
+  name: Nmbrs Companies API
+  description: Company (employer) records within a Nmbrs environment.
+  humanURL: https://developer.nmbrs.com/docs
+  baseURL: https://api.nmbrsapp.com
+  tags:
+  - Companies
+  properties:
+  - type: OpenAPI
+    url: openapi/nmbrs-companies-api-openapi.yml
+  - type: Documentation
+    url: https://developer.nmbrs.com/docs
+  - type: APIReference
+    url: https://nmbrs.stoplight.io/docs/nmbrs-restapi
+  - type: PostmanCollection
+    url: collections/nmbrs.postman_collection.json
+  - type: OpenCollection
+    url: collections/nmbrs.opencollection.json
+  - type: APIReference
+    url: https://nmbrs.stoplight.io/docs/nmbrs-restapi/a31578b069764-get-employee-list
+- aid: nmbrs:nmbrs-employees-api
+  name: Nmbrs Employees API
+  description: Employee records and their personal / HR information.
+  humanURL: https://developer.nmbrs.com/docs
+  baseURL: https://api.nmbrsapp.com
+  tags:
+  - Employees
+  properties:
+  - type: OpenAPI
+    url: openapi/nmbrs-employees-api-openapi.yml
+  - type: Documentation
+    url: https://developer.nmbrs.com/docs
+  - type: APIReference
+    url: https://nmbrs.stoplight.io/docs/nmbrs-restapi
+  - type: PostmanCollection
+    url: collections/nmbrs.postman_collection.json
+  - type: OpenCollection
+    url: collections/nmbrs.opencollection.json
+  - type: APIReference
+    url: https://nmbrs.stoplight.io/docs/nmbrs-restapi/a31578b069764-get-employee-list
+- aid: nmbrs:nmbrs-employments-api
+  name: Nmbrs Employments API
+  description: Employment contracts and employment history for an employee.
+  humanURL: https://developer.nmbrs.com/docs
+  baseURL: https://api.nmbrsapp.com
+  tags:
+  - Employments
+  properties:
+  - type: OpenAPI
+    url: openapi/nmbrs-employments-api-openapi.yml
+  - type: Documentation
+    url: https://developer.nmbrs.com/docs
+  - type: APIReference
+    url: https://nmbrs.stoplight.io/docs/nmbrs-restapi
+  - type: PostmanCollection
+    url: collections/nmbrs.postman_collection.json
+  - type: OpenCollection
+    url: collections/nmbrs.opencollection.json
+  - type: APIReference
+    url: https://nmbrs.stoplight.io/docs/nmbrs-restapi/a31578b069764-get-employee-list
+- aid: nmbrs:nmbrs-payruns-api
+  name: Nmbrs Payruns API
+  description: Payroll runs (payruns) and their results for a company.
+  humanURL: https://developer.nmbrs.com/docs
+  baseURL: https://api.nmbrsapp.com
+  tags:
+  - Payruns
+  properties:
+  - type: OpenAPI
+    url: openapi/nmbrs-payruns-api-openapi.yml
+  - type: Documentation
+    url: https://developer.nmbrs.com/docs
+  - type: APIReference
+    url: https://nmbrs.stoplight.io/docs/nmbrs-restapi
+  - type: PostmanCollection
+    url: collections/nmbrs.postman_collection.json
+  - type: OpenCollection
+    url: collections/nmbrs.opencollection.json
+  - type: APIReference
+    url: https://nmbrs.stoplight.io/docs/nmbrs-restapi/a31578b069764-get-employee-list
+- aid: nmbrs:nmbrs-salaries-api
+  name: Nmbrs Salaries API
+  description: Salary and wage information for an employee.
+  humanURL: https://developer.nmbrs.com/docs
+  baseURL: https://api.nmbrsapp.com
+  tags:
+  - Salaries
+  properties:
+  - type: OpenAPI
+    url: openapi/nmbrs-salaries-api-openapi.yml
+  - type: Documentation
+    url: https://developer.nmbrs.com/docs
+  - type: APIReference
+    url: https://nmbrs.stoplight.io/docs/nmbrs-restapi
+  - type: PostmanCollection
+    url: collections/nmbrs.postman_collection.json
+  - type: OpenCollection
+    url: collections/nmbrs.opencollection.json
+  - type: APIReference
+    url: https://nmbrs.stoplight.io/docs/nmbrs-restapi/a31578b069764-get-employee-list
+- aid: nmbrs:nmbrs-wage-components-api
+  name: Nmbrs Wage Components API
+  description: Fixed and variable wage components used in payroll.
+  humanURL: https://developer.nmbrs.com/docs
+  baseURL: https://api.nmbrsapp.com
+  tags:
+  - Wage Components
+  properties:
+  - type: OpenAPI
+    url: openapi/nmbrs-wage-components-api-openapi.yml
+  - type: Documentation
+    url: https://developer.nmbrs.com/docs
+  - type: APIReference
+    url: https://nmbrs.stoplight.io/docs/nmbrs-restapi
+  - type: PostmanCollection
+    url: collections/nmbrs.postman_collection.json
+  - type: OpenCollection
+    url: collections/nmbrs.opencollection.json
+  - type: APIReference
+    url: https://nmbrs.stoplight.io/docs/nmbrs-restapi/a31578b069764-get-employee-list
 common:
 - type: AgenticAccess
   url: agentic-access/nmbrs-agentic-access.yml
