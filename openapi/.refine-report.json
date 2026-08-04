@@ -1,0 +1,26 @@
+{
+  "provider": "nmbrs",
+  "sources": [
+    "nmbrs-absences-api-openapi.yml",
+    "nmbrs-companies-api-openapi.yml",
+    "nmbrs-employees-api-openapi.yml",
+    "nmbrs-employments-api-openapi.yml",
+    "nmbrs-payruns-api-openapi.yml",
+    "nmbrs-salaries-api-openapi.yml",
+    "nmbrs-wage-components-api-openapi.yml"
+  ],
+  "outputs": [
+    "nmbrs-absences-api-openapi.yml",
+    "nmbrs-companies-api-openapi.yml",
+    "nmbrs-employees-api-openapi.yml",
+    "nmbrs-employments-api-openapi.yml",
+    "nmbrs-payruns-api-openapi.yml",
+    "nmbrs-salaries-api-openapi.yml",
+    "nmbrs-wage-components-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}

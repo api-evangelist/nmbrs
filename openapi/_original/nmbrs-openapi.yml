@@ -1,0 +1,424 @@
+openapi: 3.0.3
+info:
+  title: Nmbrs Public REST API (HR & Payroll)
+  description: >-
+    Modeled OpenAPI for the Visma Nmbrs public REST API - the current,
+    forward-looking interface to Nmbrs HR and payroll software (Netherlands and
+    Sweden). The REST API is served from https://api.nmbrsapp.com and is
+    authenticated with the OAuth 2.0 Authorization Code flow
+    (identityservice.nmbrs.com) plus a per-product subscription key sent on
+    every request. It exposes HRIS and payroll resources - companies,
+    employees, employments, personal and salary info, wage components, payruns,
+    and absences - scoped by granular OAuth scopes such as employee.info,
+    employee.employment, and employee.payment.
+
+    HONESTY NOTE: The Nmbrs REST API reference is published as an interactive
+    Stoplight project rather than a downloadable OpenAPI file, and the live
+    endpoints are gated behind OAuth + a subscription key (GET
+    https://api.nmbrsapp.com/api/companies returns 401 unauthenticated). The
+    paths, parameters, and schemas below are MODELED from the published
+    resource groups and the confirmed base URL / auth model; they are a faithful
+    representation for discovery, not a byte-for-byte copy of the vendor spec.
+    Nmbrs also operates a separate, older SOAP API (api.nmbrs.nl/soap/v3,
+    EmployeeService / CompanyService / DebtorService) that is deprecated and
+    scheduled to be retired on 1 March 2027 - it is described in the repository
+    README and review, not in this REST document.
+  version: '1.0-modeled'
+  contact:
+    name: Nmbrs Developer Portal
+    url: https://developer.nmbrs.com
+servers:
+  - url: https://api.nmbrsapp.com
+    description: Nmbrs Public REST API
+security:
+  - oauth2: []
+    subscriptionKey: []
+tags:
+  - name: Companies
+    description: Company (employer) records within a Nmbrs environment.
+  - name: Employees
+    description: Employee records and their personal / HR information.
+  - name: Employments
+    description: Employment contracts and employment history for an employee.
+  - name: Salaries
+    description: Salary and wage information for an employee.
+  - name: Wage Components
+    description: Fixed and variable wage components used in payroll.
+  - name: Payruns
+    description: Payroll runs (payruns) and their results for a company.
+  - name: Absences
+    description: Employee absence, leave, and sickness registrations.
+paths:
+  /api/companies:
+    get:
+      operationId: listCompanies
+      tags:
+        - Companies
+      summary: List companies
+      description: Lists the companies (employers) accessible to the authenticated subscription.
+      responses:
+        '200':
+          description: A list of companies.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Company'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /api/companies/{companyId}/employees:
+    get:
+      operationId: listCompanyEmployees
+      tags:
+        - Employees
+      summary: Get employee list
+      description: Lists the employees belonging to the given company.
+      parameters:
+        - $ref: '#/components/parameters/CompanyId'
+      responses:
+        '200':
+          description: A list of employees.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Employee'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /api/employees/{employeeId}:
+    get:
+      operationId: getEmployee
+      tags:
+        - Employees
+      summary: Get an employee
+      description: Retrieves a single employee by identifier.
+      parameters:
+        - $ref: '#/components/parameters/EmployeeId'
+      responses:
+        '200':
+          description: An employee.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Employee'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /api/employees/{employeeId}/employments:
+    get:
+      operationId: listEmployments
+      tags:
+        - Employments
+      summary: List employments
+      description: Lists the employment contracts and history for an employee.
+      parameters:
+        - $ref: '#/components/parameters/EmployeeId'
+      responses:
+        '200':
+          description: A list of employments.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Employment'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /api/employees/{employeeId}/salaries:
+    get:
+      operationId: listSalaries
+      tags:
+        - Salaries
+      summary: List salaries
+      description: Lists salary records for an employee.
+      parameters:
+        - $ref: '#/components/parameters/EmployeeId'
+      responses:
+        '200':
+          description: A list of salaries.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Salary'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /api/employees/{employeeId}/wagecomponents:
+    get:
+      operationId: listWageComponents
+      tags:
+        - Wage Components
+      summary: List wage components
+      description: Lists fixed and variable wage components for an employee.
+      parameters:
+        - $ref: '#/components/parameters/EmployeeId'
+      responses:
+        '200':
+          description: A list of wage components.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/WageComponent'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+    post:
+      operationId: createWageComponent
+      tags:
+        - Wage Components
+      summary: Add a wage component
+      description: Adds a fixed or variable wage component to an employee.
+      parameters:
+        - $ref: '#/components/parameters/EmployeeId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/WageComponent'
+      responses:
+        '201':
+          description: The created wage component.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WageComponent'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /api/companies/{companyId}/payruns:
+    get:
+      operationId: listPayruns
+      tags:
+        - Payruns
+      summary: List payruns
+      description: Lists payroll runs for a company.
+      parameters:
+        - $ref: '#/components/parameters/CompanyId'
+      responses:
+        '200':
+          description: A list of payruns.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Payrun'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /api/employees/{employeeId}/absences:
+    get:
+      operationId: listAbsences
+      tags:
+        - Absences
+      summary: List absences
+      description: Lists absence, leave, and sickness registrations for an employee.
+      parameters:
+        - $ref: '#/components/parameters/EmployeeId'
+      responses:
+        '200':
+          description: A list of absence records.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Absence'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+    post:
+      operationId: createAbsence
+      tags:
+        - Absences
+      summary: Register an absence
+      description: Registers a new absence (leave or sickness) for an employee.
+      parameters:
+        - $ref: '#/components/parameters/EmployeeId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Absence'
+      responses:
+        '201':
+          description: The created absence record.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Absence'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+components:
+  parameters:
+    CompanyId:
+      name: companyId
+      in: path
+      required: true
+      description: Unique identifier of the company.
+      schema:
+        type: string
+    EmployeeId:
+      name: employeeId
+      in: path
+      required: true
+      description: Unique identifier of the employee.
+      schema:
+        type: string
+  responses:
+    Unauthorized:
+      description: Missing or invalid OAuth token or subscription key.
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              statusCode:
+                type: integer
+                example: 401
+              message:
+                type: string
+                example: Access denied due to invalid subscription key or bearer token.
+  schemas:
+    Company:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        number:
+          type: integer
+        phase:
+          type: string
+    Employee:
+      type: object
+      properties:
+        employeeId:
+          type: string
+        personalInfo:
+          $ref: '#/components/schemas/PersonalInfo'
+    PersonalInfo:
+      type: object
+      properties:
+        firstName:
+          type: string
+        lastName:
+          type: string
+        dateOfBirth:
+          type: string
+          format: date
+        emailAddress:
+          type: string
+          format: email
+    Employment:
+      type: object
+      properties:
+        employmentId:
+          type: string
+        startDate:
+          type: string
+          format: date
+        endDate:
+          type: string
+          format: date
+        contractType:
+          type: string
+    Salary:
+      type: object
+      properties:
+        value:
+          type: number
+        type:
+          type: string
+        startDate:
+          type: string
+          format: date
+    WageComponent:
+      type: object
+      properties:
+        code:
+          type: integer
+        value:
+          type: number
+        kind:
+          type: string
+          enum:
+            - fixed
+            - variable
+        period:
+          type: integer
+        year:
+          type: integer
+    Payrun:
+      type: object
+      properties:
+        payrunId:
+          type: string
+        period:
+          type: integer
+        year:
+          type: integer
+        runId:
+          type: integer
+        description:
+          type: string
+    Absence:
+      type: object
+      properties:
+        absenceId:
+          type: string
+        type:
+          type: string
+        percentage:
+          type: integer
+        startDate:
+          type: string
+          format: date
+        endDate:
+          type: string
+          format: date
+  securitySchemes:
+    oauth2:
+      type: oauth2
+      description: OAuth 2.0 Authorization Code flow via identityservice.nmbrs.com.
+      flows:
+        authorizationCode:
+          authorizationUrl: https://identityservice.nmbrs.com/connect/authorize
+          tokenUrl: https://identityservice.nmbrs.com/connect/token
+          scopes:
+            employee.info: Read/write employee personal information
+            employee.info.read: Read employee personal information
+            employee.employment: Read/write employment data
+            employee.employment.read: Read employment data
+            employee.payment: Read/write salary and payment data
+    subscriptionKey:
+      type: apiKey
+      in: header
+      name: X-Subscription-Key
+      description: >-
+        Per-product subscription key generated in the Nmbrs developer portal,
+        required on every request in addition to the OAuth bearer token.
