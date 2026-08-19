@@ -1,0 +1,207 @@
+{
+  "item": [
+    {
+      "id": "04695757-3a43-4e0f-b920-b53d19897e0a",
+      "name": "Payruns",
+      "description": {
+        "content": "Payroll runs (payruns) and their results for a company.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "9a8be3cb-fc8d-40ec-8c39-1cd30ddfba0b",
+          "name": "List payruns",
+          "request": {
+            "name": "List payruns",
+            "description": {
+              "content": "Lists payroll runs for a company.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "companies",
+                ":companyId",
+                "payruns"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "companyId",
+                  "description": "(Required) Unique identifier of the company."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "ade5c68b-af80-47a6-81ec-44ccfad45d1b",
+              "name": "A list of payruns.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "companies",
+                    ":companyId",
+                    "payruns"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "companyId",
+                      "description": "(Required) Unique identifier of the company."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"payrunId\": \"string\",\n      \"period\": 3669,\n      \"year\": 6234,\n      \"runId\": 6495,\n      \"description\": \"string\"\n    },\n    {\n      \"payrunId\": \"string\",\n      \"period\": 6101,\n      \"year\": 5401,\n      \"runId\": 1844,\n      \"description\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2667e64a-3283-4613-b6be-41b3e7a57b22",
+              "name": "Missing or invalid OAuth token or subscription key.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "companies",
+                    ":companyId",
+                    "payruns"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "companyId",
+                      "description": "(Required) Unique identifier of the company."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"statusCode\": 401,\n  \"message\": \"Access denied due to invalid subscription key or bearer token.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.nmbrsapp.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": [
+      {
+        "key": "scope",
+        "value": "employee.info employee.info.read employee.employment employee.employment.read employee.payment"
+      },
+      {
+        "key": "accessTokenUrl",
+        "value": "https://identityservice.nmbrs.com/connect/token"
+      },
+      {
+        "key": "authUrl",
+        "value": "https://identityservice.nmbrs.com/connect/authorize"
+      },
+      {
+        "key": "grant_type",
+        "value": "authorization_code"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "e6cbf490-7aa6-4586-853e-496a78d399dc",
+    "name": "Nmbrs Public REST API (HR & Payroll) Absences Payruns API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Modeled OpenAPI for the Visma Nmbrs public REST API - the current, forward-looking interface to Nmbrs HR and payroll software (Netherlands and Sweden). The REST API is served from https://api.nmbrsapp.com and is authenticated with the OAuth 2.0 Authorization Code flow (identityservice.nmbrs.com) plus a per-product subscription key sent on every request. It exposes HRIS and payroll resources - companies, employees, employments, personal and salary info, wage components, payruns, and absences - scoped by granular OAuth scopes such as employee.info, employee.employment, and employee.payment.\nHONESTY NOTE: The Nmbrs REST API reference is published as an interactive Stoplight project rather than a downloadable OpenAPI file, and the live endpoints are gated behind OAuth + a subscription key (GET https://api.nmbrsapp.com/api/companies returns 401 unauthenticated). The paths, parameters, and schemas below are MODELED from the published resource groups and the confirmed base URL / auth model; they are a faithful representation for discovery, not a byte-for-byte copy of the vendor spec. Nmbrs also operates a separate, older SOAP API (api.nmbrs.nl/soap/v3, EmployeeService / CompanyService / DebtorService) that is deprecated and scheduled to be retired on 1 March 2027 - it is described in the repository README and review, not in this REST document.\n\nContact Support:\n Name: Nmbrs Developer Portal",
+      "type": "text/plain"
+    }
+  }
+}

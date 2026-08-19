@@ -1,0 +1,390 @@
+{
+  "item": [
+    {
+      "id": "001026a5-a727-4e19-b9e2-08d50bf78adb",
+      "name": "Absences",
+      "description": {
+        "content": "Employee absence, leave, and sickness registrations.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "2377e1aa-d95f-42be-b4b7-48e697bd9856",
+          "name": "List absences",
+          "request": {
+            "name": "List absences",
+            "description": {
+              "content": "Lists absence, leave, and sickness registrations for an employee.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "employees",
+                ":employeeId",
+                "absences"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "employeeId",
+                  "description": "(Required) Unique identifier of the employee."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "8f4963fb-ccf9-433f-be14-b80a09d203fc",
+              "name": "A list of absence records.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "employees",
+                    ":employeeId",
+                    "absences"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "employeeId",
+                      "description": "(Required) Unique identifier of the employee."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"absenceId\": \"string\",\n      \"type\": \"string\",\n      \"percentage\": 4219,\n      \"startDate\": \"1954-07-06\",\n      \"endDate\": \"1952-04-02\"\n    },\n    {\n      \"absenceId\": \"string\",\n      \"type\": \"string\",\n      \"percentage\": 4403,\n      \"startDate\": \"2023-05-12\",\n      \"endDate\": \"2016-02-27\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "347363a1-bb1d-42ed-a1c2-7c16aa66921d",
+              "name": "Missing or invalid OAuth token or subscription key.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "employees",
+                    ":employeeId",
+                    "absences"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "employeeId",
+                      "description": "(Required) Unique identifier of the employee."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"statusCode\": 401,\n  \"message\": \"Access denied due to invalid subscription key or bearer token.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "35810c58-5561-42fb-af1f-950b507b29ed",
+          "name": "Register an absence",
+          "request": {
+            "name": "Register an absence",
+            "description": {
+              "content": "Registers a new absence (leave or sickness) for an employee.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "employees",
+                ":employeeId",
+                "absences"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "employeeId",
+                  "description": "(Required) Unique identifier of the employee."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"absenceId\": \"<string>\",\n  \"type\": \"<string>\",\n  \"percentage\": \"<integer>\",\n  \"startDate\": \"<date>\",\n  \"endDate\": \"<date>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "83513812-8a26-4c59-adc8-8b4e0f2f3847",
+              "name": "The created absence record.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "employees",
+                    ":employeeId",
+                    "absences"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "employeeId",
+                      "description": "(Required) Unique identifier of the employee."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"absenceId\": \"<string>\",\n  \"type\": \"<string>\",\n  \"percentage\": \"<integer>\",\n  \"startDate\": \"<date>\",\n  \"endDate\": \"<date>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"absenceId\": \"<string>\",\n  \"type\": \"<string>\",\n  \"percentage\": \"<integer>\",\n  \"startDate\": \"<date>\",\n  \"endDate\": \"<date>\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "28ec1074-598d-416b-b8f0-54027a3ac324",
+              "name": "Missing or invalid OAuth token or subscription key.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "employees",
+                    ":employeeId",
+                    "absences"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "employeeId",
+                      "description": "(Required) Unique identifier of the employee."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"absenceId\": \"<string>\",\n  \"type\": \"<string>\",\n  \"percentage\": \"<integer>\",\n  \"startDate\": \"<date>\",\n  \"endDate\": \"<date>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"statusCode\": 401,\n  \"message\": \"Access denied due to invalid subscription key or bearer token.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.nmbrsapp.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": [
+      {
+        "key": "scope",
+        "value": "employee.info employee.info.read employee.employment employee.employment.read employee.payment"
+      },
+      {
+        "key": "accessTokenUrl",
+        "value": "https://identityservice.nmbrs.com/connect/token"
+      },
+      {
+        "key": "authUrl",
+        "value": "https://identityservice.nmbrs.com/connect/authorize"
+      },
+      {
+        "key": "grant_type",
+        "value": "authorization_code"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "e015cde4-d165-4471-ad83-35f849749713",
+    "name": "Nmbrs Public REST API (HR & Payroll) Absences API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Modeled OpenAPI for the Visma Nmbrs public REST API - the current, forward-looking interface to Nmbrs HR and payroll software (Netherlands and Sweden). The REST API is served from https://api.nmbrsapp.com and is authenticated with the OAuth 2.0 Authorization Code flow (identityservice.nmbrs.com) plus a per-product subscription key sent on every request. It exposes HRIS and payroll resources - companies, employees, employments, personal and salary info, wage components, payruns, and absences - scoped by granular OAuth scopes such as employee.info, employee.employment, and employee.payment.\nHONESTY NOTE: The Nmbrs REST API reference is published as an interactive Stoplight project rather than a downloadable OpenAPI file, and the live endpoints are gated behind OAuth + a subscription key (GET https://api.nmbrsapp.com/api/companies returns 401 unauthenticated). The paths, parameters, and schemas below are MODELED from the published resource groups and the confirmed base URL / auth model; they are a faithful representation for discovery, not a byte-for-byte copy of the vendor spec. Nmbrs also operates a separate, older SOAP API (api.nmbrs.nl/soap/v3, EmployeeService / CompanyService / DebtorService) that is deprecated and scheduled to be retired on 1 March 2027 - it is described in the repository README and review, not in this REST document.\n\nContact Support:\n Name: Nmbrs Developer Portal",
+      "type": "text/plain"
+    }
+  }
+}

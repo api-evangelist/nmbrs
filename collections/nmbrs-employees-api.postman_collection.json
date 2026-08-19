@@ -1,0 +1,358 @@
+{
+  "item": [
+    {
+      "id": "aa970216-660e-461b-bfaa-91ceaea9200f",
+      "name": "Employees",
+      "description": {
+        "content": "Employee records and their personal / HR information.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "c5fdbc62-5f02-46a1-9502-25398908b154",
+          "name": "Get employee list",
+          "request": {
+            "name": "Get employee list",
+            "description": {
+              "content": "Lists the employees belonging to the given company.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "companies",
+                ":companyId",
+                "employees"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "companyId",
+                  "description": "(Required) Unique identifier of the company."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "4d45ad35-008a-468e-b815-bfcc5c5c10af",
+              "name": "A list of employees.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "companies",
+                    ":companyId",
+                    "employees"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "companyId",
+                      "description": "(Required) Unique identifier of the company."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"employeeId\": \"string\",\n      \"personalInfo\": {\n        \"firstName\": \"string\",\n        \"lastName\": \"string\",\n        \"dateOfBirth\": \"1959-10-08\",\n        \"emailAddress\": \"7QHK@mwLapSjZNWSAbkYnK.yz\"\n      }\n    },\n    {\n      \"employeeId\": \"string\",\n      \"personalInfo\": {\n        \"firstName\": \"string\",\n        \"lastName\": \"string\",\n        \"dateOfBirth\": \"1946-10-04\",\n        \"emailAddress\": \"VetsXzoOUM@JzRKuLn.iwx\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0a841a47-647f-429e-8aed-5f2de648a638",
+              "name": "Missing or invalid OAuth token or subscription key.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "companies",
+                    ":companyId",
+                    "employees"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "companyId",
+                      "description": "(Required) Unique identifier of the company."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"statusCode\": 401,\n  \"message\": \"Access denied due to invalid subscription key or bearer token.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ddf3ff93-fc52-4f21-8f09-e7e45bb9f7a8",
+          "name": "Get an employee",
+          "request": {
+            "name": "Get an employee",
+            "description": {
+              "content": "Retrieves a single employee by identifier.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "employees",
+                ":employeeId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "employeeId",
+                  "description": "(Required) Unique identifier of the employee."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "edaafe73-70b6-45a7-bb09-92e6edd0b89d",
+              "name": "An employee.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "employees",
+                    ":employeeId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "employeeId",
+                      "description": "(Required) Unique identifier of the employee."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"employeeId\": \"string\",\n  \"personalInfo\": {\n    \"firstName\": \"string\",\n    \"lastName\": \"string\",\n    \"dateOfBirth\": \"2022-07-27\",\n    \"emailAddress\": \"kb8g5yZT4IB8@BvdwLbx.nt\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "bad653d3-4bbf-4f1d-9c32-430154a09e13",
+              "name": "Missing or invalid OAuth token or subscription key.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "employees",
+                    ":employeeId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "employeeId",
+                      "description": "(Required) Unique identifier of the employee."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"statusCode\": 401,\n  \"message\": \"Access denied due to invalid subscription key or bearer token.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.nmbrsapp.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": [
+      {
+        "key": "scope",
+        "value": "employee.info employee.info.read employee.employment employee.employment.read employee.payment"
+      },
+      {
+        "key": "accessTokenUrl",
+        "value": "https://identityservice.nmbrs.com/connect/token"
+      },
+      {
+        "key": "authUrl",
+        "value": "https://identityservice.nmbrs.com/connect/authorize"
+      },
+      {
+        "key": "grant_type",
+        "value": "authorization_code"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "04817646-2af4-4b4d-9bec-14884c442963",
+    "name": "Nmbrs Public REST API (HR & Payroll) Absences Employees API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Modeled OpenAPI for the Visma Nmbrs public REST API - the current, forward-looking interface to Nmbrs HR and payroll software (Netherlands and Sweden). The REST API is served from https://api.nmbrsapp.com and is authenticated with the OAuth 2.0 Authorization Code flow (identityservice.nmbrs.com) plus a per-product subscription key sent on every request. It exposes HRIS and payroll resources - companies, employees, employments, personal and salary info, wage components, payruns, and absences - scoped by granular OAuth scopes such as employee.info, employee.employment, and employee.payment.\nHONESTY NOTE: The Nmbrs REST API reference is published as an interactive Stoplight project rather than a downloadable OpenAPI file, and the live endpoints are gated behind OAuth + a subscription key (GET https://api.nmbrsapp.com/api/companies returns 401 unauthenticated). The paths, parameters, and schemas below are MODELED from the published resource groups and the confirmed base URL / auth model; they are a faithful representation for discovery, not a byte-for-byte copy of the vendor spec. Nmbrs also operates a separate, older SOAP API (api.nmbrs.nl/soap/v3, EmployeeService / CompanyService / DebtorService) that is deprecated and scheduled to be retired on 1 March 2027 - it is described in the repository README and review, not in this REST document.\n\nContact Support:\n Name: Nmbrs Developer Portal",
+      "type": "text/plain"
+    }
+  }
+}

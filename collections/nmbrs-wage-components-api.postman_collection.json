@@ -1,0 +1,390 @@
+{
+  "item": [
+    {
+      "id": "2c50a4bb-b344-4e14-bc6d-59541932136a",
+      "name": "Wage Components",
+      "description": {
+        "content": "Fixed and variable wage components used in payroll.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "4bd794e9-06a8-473e-a940-d1558cd20db5",
+          "name": "List wage components",
+          "request": {
+            "name": "List wage components",
+            "description": {
+              "content": "Lists fixed and variable wage components for an employee.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "employees",
+                ":employeeId",
+                "wagecomponents"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "employeeId",
+                  "description": "(Required) Unique identifier of the employee."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "c671c3cc-cb2c-4122-9ac2-69e9c6184dbb",
+              "name": "A list of wage components.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "employees",
+                    ":employeeId",
+                    "wagecomponents"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "employeeId",
+                      "description": "(Required) Unique identifier of the employee."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"code\": 212,\n      \"value\": 1730.1082567842795,\n      \"kind\": \"fixed\",\n      \"period\": 6120,\n      \"year\": 1463\n    },\n    {\n      \"code\": 9127,\n      \"value\": 2914.9896741309576,\n      \"kind\": \"fixed\",\n      \"period\": 8795,\n      \"year\": 4638\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "27a2d6e5-53fa-4e3d-8d19-612354b0a115",
+              "name": "Missing or invalid OAuth token or subscription key.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "employees",
+                    ":employeeId",
+                    "wagecomponents"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "employeeId",
+                      "description": "(Required) Unique identifier of the employee."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"statusCode\": 401,\n  \"message\": \"Access denied due to invalid subscription key or bearer token.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "baaa79de-4f6a-47b8-af39-4fc7a6df0417",
+          "name": "Add a wage component",
+          "request": {
+            "name": "Add a wage component",
+            "description": {
+              "content": "Adds a fixed or variable wage component to an employee.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "employees",
+                ":employeeId",
+                "wagecomponents"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "employeeId",
+                  "description": "(Required) Unique identifier of the employee."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"code\": \"<integer>\",\n  \"value\": \"<number>\",\n  \"kind\": \"<string>\",\n  \"period\": \"<integer>\",\n  \"year\": \"<integer>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "077e62ce-4df7-4b13-8ab0-0df0340c7afc",
+              "name": "The created wage component.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "employees",
+                    ":employeeId",
+                    "wagecomponents"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "employeeId",
+                      "description": "(Required) Unique identifier of the employee."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"code\": \"<integer>\",\n  \"value\": \"<number>\",\n  \"kind\": \"<string>\",\n  \"period\": \"<integer>\",\n  \"year\": \"<integer>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"<integer>\",\n  \"value\": \"<number>\",\n  \"kind\": \"<string>\",\n  \"period\": \"<integer>\",\n  \"year\": \"<integer>\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "181772a5-415d-4067-9e3c-7191d83f6bde",
+              "name": "Missing or invalid OAuth token or subscription key.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "employees",
+                    ":employeeId",
+                    "wagecomponents"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "employeeId",
+                      "description": "(Required) Unique identifier of the employee."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"code\": \"<integer>\",\n  \"value\": \"<number>\",\n  \"kind\": \"<string>\",\n  \"period\": \"<integer>\",\n  \"year\": \"<integer>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"statusCode\": 401,\n  \"message\": \"Access denied due to invalid subscription key or bearer token.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.nmbrsapp.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": [
+      {
+        "key": "scope",
+        "value": "employee.info employee.info.read employee.employment employee.employment.read employee.payment"
+      },
+      {
+        "key": "accessTokenUrl",
+        "value": "https://identityservice.nmbrs.com/connect/token"
+      },
+      {
+        "key": "authUrl",
+        "value": "https://identityservice.nmbrs.com/connect/authorize"
+      },
+      {
+        "key": "grant_type",
+        "value": "authorization_code"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "3140ce6f-5a30-4f0c-a20e-76fa2395c7d0",
+    "name": "Nmbrs Public REST API (HR & Payroll) Absences Wage Components API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Modeled OpenAPI for the Visma Nmbrs public REST API - the current, forward-looking interface to Nmbrs HR and payroll software (Netherlands and Sweden). The REST API is served from https://api.nmbrsapp.com and is authenticated with the OAuth 2.0 Authorization Code flow (identityservice.nmbrs.com) plus a per-product subscription key sent on every request. It exposes HRIS and payroll resources - companies, employees, employments, personal and salary info, wage components, payruns, and absences - scoped by granular OAuth scopes such as employee.info, employee.employment, and employee.payment.\nHONESTY NOTE: The Nmbrs REST API reference is published as an interactive Stoplight project rather than a downloadable OpenAPI file, and the live endpoints are gated behind OAuth + a subscription key (GET https://api.nmbrsapp.com/api/companies returns 401 unauthenticated). The paths, parameters, and schemas below are MODELED from the published resource groups and the confirmed base URL / auth model; they are a faithful representation for discovery, not a byte-for-byte copy of the vendor spec. Nmbrs also operates a separate, older SOAP API (api.nmbrs.nl/soap/v3, EmployeeService / CompanyService / DebtorService) that is deprecated and scheduled to be retired on 1 March 2027 - it is described in the repository README and review, not in this REST document.\n\nContact Support:\n Name: Nmbrs Developer Portal",
+      "type": "text/plain"
+    }
+  }
+}

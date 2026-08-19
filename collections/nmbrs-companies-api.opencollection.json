@@ -1,0 +1,41 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Nmbrs Public REST API (HR & Payroll) Absences Companies API",
+    "version": "1.0-modeled"
+  },
+  "request": {
+    "auth": {
+      "type": "oauth2",
+      "flow": "authorization_code",
+      "authorizationUrl": "https://identityservice.nmbrs.com/connect/authorize",
+      "accessTokenUrl": "https://identityservice.nmbrs.com/connect/token",
+      "credentials": {
+        "clientId": "{{clientId}}",
+        "clientSecret": "{{clientSecret}}"
+      }
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Companies",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List companies",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.nmbrsapp.com/api/companies"
+          },
+          "docs": "Lists the companies (employers) accessible to the authenticated subscription."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

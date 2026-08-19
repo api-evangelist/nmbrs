@@ -1,0 +1,68 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Nmbrs Public REST API (HR & Payroll) Absences Employees API",
+    "version": "1.0-modeled"
+  },
+  "request": {
+    "auth": {
+      "type": "oauth2",
+      "flow": "authorization_code",
+      "authorizationUrl": "https://identityservice.nmbrs.com/connect/authorize",
+      "accessTokenUrl": "https://identityservice.nmbrs.com/connect/token",
+      "credentials": {
+        "clientId": "{{clientId}}",
+        "clientSecret": "{{clientSecret}}"
+      }
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Employees",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get employee list",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.nmbrsapp.com/api/companies/:companyId/employees",
+            "params": [
+              {
+                "name": "companyId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the company."
+              }
+            ]
+          },
+          "docs": "Lists the employees belonging to the given company."
+        },
+        {
+          "info": {
+            "name": "Get an employee",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.nmbrsapp.com/api/employees/:employeeId",
+            "params": [
+              {
+                "name": "employeeId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the employee."
+              }
+            ]
+          },
+          "docs": "Retrieves a single employee by identifier."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
