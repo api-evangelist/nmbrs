@@ -14,6 +14,18 @@ description: >-
   EmployeeService, CompanyService, DebtorService) remains available for existing
   integrations but is deprecated and scheduled to be retired on 1 March 2027,
   after which REST is the only supported API.
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: true
+  label: Hosted service · you call their endpoint
+  confidence: high
+  source:
+  - openapi
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: paid
   onboarding: self-serve
