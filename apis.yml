@@ -200,7 +200,7 @@ apis:
   humanURL: https://developer.nmbrs.com/docs
   baseURL: https://api.nmbrsapp.com
   tags:
-  - Pay Runs
+  - Payruns
   tags_raw:
   - Payruns
   properties:
