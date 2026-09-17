@@ -194,28 +194,6 @@ apis:
     url: collections/nmbrs.opencollection.json
   - type: APIReference
     url: https://nmbrs.stoplight.io/docs/nmbrs-restapi/a31578b069764-get-employee-list
-- aid: nmbrs:nmbrs-payruns-api
-  name: Nmbrs Payruns API
-  description: Payroll runs (payruns) and their results for a company.
-  humanURL: https://developer.nmbrs.com/docs
-  baseURL: https://api.nmbrsapp.com
-  tags:
-  - Pay Runs
-  tags_raw:
-  - Payruns
-  properties:
-  - type: OpenAPI
-    url: openapi/nmbrs-payruns-api-openapi.yml
-  - type: Documentation
-    url: https://developer.nmbrs.com/docs
-  - type: APIReference
-    url: https://nmbrs.stoplight.io/docs/nmbrs-restapi
-  - type: PostmanCollection
-    url: collections/nmbrs.postman_collection.json
-  - type: OpenCollection
-    url: collections/nmbrs.opencollection.json
-  - type: APIReference
-    url: https://nmbrs.stoplight.io/docs/nmbrs-restapi/a31578b069764-get-employee-list
 - aid: nmbrs:nmbrs-salaries-api
   name: Nmbrs Salaries API
   description: Salary and wage information for an employee.
@@ -246,6 +224,26 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/nmbrs-wage-components-api-openapi.yml
+  - type: Documentation
+    url: https://developer.nmbrs.com/docs
+  - type: APIReference
+    url: https://nmbrs.stoplight.io/docs/nmbrs-restapi
+  - type: PostmanCollection
+    url: collections/nmbrs.postman_collection.json
+  - type: OpenCollection
+    url: collections/nmbrs.opencollection.json
+  - type: APIReference
+    url: https://nmbrs.stoplight.io/docs/nmbrs-restapi/a31578b069764-get-employee-list
+- aid: nmbrs:nmbrs-pay-runs-api
+  name: Nmbrs Pay Runs API
+  description: Payroll runs (payruns) and their results for a company.
+  humanURL: https://api.nmbrs.nl/soap/v3/EmployeeService.asmx
+  baseURL: https://api.nmbrs.nl/soap/v3
+  tags:
+  - Pay Runs
+  properties:
+  - type: OpenAPI
+    url: openapi/nmbrs-pay-runs-api-openapi.yml
   - type: Documentation
     url: https://developer.nmbrs.com/docs
   - type: APIReference
