@@ -1,13 +1,7 @@
 {
   "provider": "nmbrs",
   "sources": [
-    "nmbrs-absences-api-openapi.yml",
-    "nmbrs-companies-api-openapi.yml",
-    "nmbrs-employees-api-openapi.yml",
-    "nmbrs-employments-api-openapi.yml",
-    "nmbrs-payruns-api-openapi.yml",
-    "nmbrs-salaries-api-openapi.yml",
-    "nmbrs-wage-components-api-openapi.yml"
+    "_original/nmbrs-openapi.yml"
   ],
   "outputs": [
     "nmbrs-absences-api-openapi.yml",
@@ -18,9 +12,24 @@
     "nmbrs-salaries-api-openapi.yml",
     "nmbrs-wage-components-api-openapi.yml"
   ],
-  "archived": [],
+  "archived": [
+    "deleted 1 superseded output(s) from the previous generation"
+  ],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "nmbrs-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
+    "superseded outputs removed: nmbrs-pay-runs-api-openapi.yml",
+    "apis.yml register: written (+1 apis, 10 total)"
+  ],
+  "skipped": [
+    "nmbrs-absences-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "nmbrs-companies-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "nmbrs-employees-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "nmbrs-employments-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "nmbrs-pay-runs-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "nmbrs-salaries-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "nmbrs-wage-components-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }
