@@ -40,20 +40,6 @@ paths:
         '401':
           $ref: '#/components/responses/Unauthorized'
 components:
-  schemas:
-    Payrun:
-      type: object
-      properties:
-        payrunId:
-          type: string
-        period:
-          type: integer
-        year:
-          type: integer
-        runId:
-          type: integer
-        description:
-          type: string
   responses:
     Unauthorized:
       description: Missing or invalid OAuth token or subscription key.
@@ -68,6 +54,20 @@ components:
               message:
                 type: string
                 example: Access denied due to invalid subscription key or bearer token.
+  schemas:
+    Payrun:
+      type: object
+      properties:
+        payrunId:
+          type: string
+        period:
+          type: integer
+        year:
+          type: integer
+        runId:
+          type: integer
+        description:
+          type: string
   parameters:
     CompanyId:
       name: companyId

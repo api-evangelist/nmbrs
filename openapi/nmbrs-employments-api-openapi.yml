@@ -40,6 +40,20 @@ paths:
         '401':
           $ref: '#/components/responses/Unauthorized'
 components:
+  schemas:
+    Employment:
+      type: object
+      properties:
+        employmentId:
+          type: string
+        startDate:
+          type: string
+          format: date
+        endDate:
+          type: string
+          format: date
+        contractType:
+          type: string
   responses:
     Unauthorized:
       description: Missing or invalid OAuth token or subscription key.
@@ -62,20 +76,6 @@ components:
       description: Unique identifier of the employee.
       schema:
         type: string
-  schemas:
-    Employment:
-      type: object
-      properties:
-        employmentId:
-          type: string
-        startDate:
-          type: string
-          format: date
-        endDate:
-          type: string
-          format: date
-        contractType:
-          type: string
   securitySchemes:
     oauth2:
       type: oauth2
