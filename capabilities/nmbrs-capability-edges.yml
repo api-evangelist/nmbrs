@@ -1,0 +1,61 @@
+slug: nmbrs
+provider: Nmbrs
+generated_by: planning/capability-mapping/scripts/classify_capabilities.py
+model: claude-opus-5
+frame:
+- Software & Technology
+min_confidence: 0.7
+capability_model:
+  source: https://github.com/vincentmakes/turbo-ea-capabilities
+  license: CC-BY-4.0
+  attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
+    CC BY 4.0
+  notice: NOTICE
+edge_count: 5
+edges:
+- tag: Employees
+  spec_file: nmbrs-employees-api-openapi.yml
+  capability_id: BC-300.70
+  capability_id_l1: BC-300
+  capability_name: HR Operations Management
+  confidence: 0.85
+  evidence: '"Get employee list", "Get an employee"; schemas Employee, PersonalInfo'
+  reason: Access to employee master records and personal information in an HRIS/payroll system is HR Operations
+    Management (employee records).
+- tag: Pay Runs
+  spec_file: nmbrs-pay-runs-api-openapi.yml
+  capability_id: BC-300.70
+  capability_id_l1: BC-300
+  capability_name: HR Operations Management
+  confidence: 0.82
+  evidence: GET /api/companies/{companyId}/payruns  listPayruns  List payruns — "cloud HR and payroll
+    software"
+  reason: Payrun listing for a company is payroll administration within HR operations, the core of this
+    vendor's HRIS/payroll surface.
+- tag: Salaries
+  spec_file: nmbrs-salaries-api-openapi.yml
+  capability_id: BC-300.30
+  capability_id_l1: BC-300
+  capability_name: Compensation & Benefits Management
+  confidence: 0.8
+  evidence: GET /api/employees/{employeeId}/salaries  listSalaries  List salaries; schema "Salary"
+  reason: Per-employee salary records are compensation data, a Compensation & Benefits Management concern
+    inside HCM.
+- tag: Absences
+  spec_file: nmbrs-absences-api-openapi.yml
+  capability_id: BC-300.70
+  capability_id_l1: BC-300
+  capability_name: HR Operations Management
+  confidence: 0.75
+  evidence: GET /api/employees/{employeeId}/absences "List absences"; POST "Register an absence"
+  reason: Registering and listing employee absences in an HR/payroll system is HR administrative operations
+    (leave/absence records) within Human Capital Management.
+- tag: Employments
+  spec_file: nmbrs-employments-api-openapi.yml
+  capability_id: BC-300.70
+  capability_id_l1: BC-300
+  capability_name: HR Operations Management
+  confidence: 0.75
+  evidence: GET /api/employees/{employeeId}/employments "List employments" with schema Employment
+  reason: Employment records per employee are core HRIS employee-record data maintained for payroll administration,
+    i.e. HR Operations Management.

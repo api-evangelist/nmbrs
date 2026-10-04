@@ -265,6 +265,9 @@ apis:
   - type: APIReference
     url: https://nmbrs.stoplight.io/docs/nmbrs-restapi/a31578b069764-get-employee-list
 common:
+- type: CapabilityMap
+  url: capabilities/nmbrs-capability-edges.yml
+  name: Nmbrs Business Capability Map
 - type: AgenticAccess
   url: agentic-access/nmbrs-agentic-access.yml
 - type: Authentication
