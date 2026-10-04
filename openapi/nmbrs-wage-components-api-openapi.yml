@@ -63,14 +63,6 @@ paths:
         '401':
           $ref: '#/components/responses/Unauthorized'
 components:
-  parameters:
-    EmployeeId:
-      name: employeeId
-      in: path
-      required: true
-      description: Unique identifier of the employee.
-      schema:
-        type: string
   schemas:
     WageComponent:
       type: object
@@ -102,6 +94,14 @@ components:
               message:
                 type: string
                 example: Access denied due to invalid subscription key or bearer token.
+  parameters:
+    EmployeeId:
+      name: employeeId
+      in: path
+      required: true
+      description: Unique identifier of the employee.
+      schema:
+        type: string
   securitySchemes:
     oauth2:
       type: oauth2

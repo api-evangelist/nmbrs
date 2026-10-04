@@ -63,6 +63,20 @@ paths:
         '401':
           $ref: '#/components/responses/Unauthorized'
 components:
+  responses:
+    Unauthorized:
+      description: Missing or invalid OAuth token or subscription key.
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              statusCode:
+                type: integer
+                example: 401
+              message:
+                type: string
+                example: Access denied due to invalid subscription key or bearer token.
   schemas:
     Absence:
       type: object
@@ -87,20 +101,6 @@ components:
       description: Unique identifier of the employee.
       schema:
         type: string
-  responses:
-    Unauthorized:
-      description: Missing or invalid OAuth token or subscription key.
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              statusCode:
-                type: integer
-                example: 401
-              message:
-                type: string
-                example: Access denied due to invalid subscription key or bearer token.
   securitySchemes:
     oauth2:
       type: oauth2

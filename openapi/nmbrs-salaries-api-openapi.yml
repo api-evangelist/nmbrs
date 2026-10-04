@@ -51,14 +51,6 @@ components:
         startDate:
           type: string
           format: date
-  parameters:
-    EmployeeId:
-      name: employeeId
-      in: path
-      required: true
-      description: Unique identifier of the employee.
-      schema:
-        type: string
   responses:
     Unauthorized:
       description: Missing or invalid OAuth token or subscription key.
@@ -73,6 +65,14 @@ components:
               message:
                 type: string
                 example: Access denied due to invalid subscription key or bearer token.
+  parameters:
+    EmployeeId:
+      name: employeeId
+      in: path
+      required: true
+      description: Unique identifier of the employee.
+      schema:
+        type: string
   securitySchemes:
     oauth2:
       type: oauth2
