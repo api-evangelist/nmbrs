@@ -1,4 +1,4 @@
-# Nmbrs (nmbrs)
+# Nmbrs
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -64,104 +64,134 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-Nmbrs (Visma Nmbrs) is cloud **HR and payroll software** for the **Netherlands and Sweden**, used by employers, accountants, and payroll service providers. Nmbrs exposes its **HRIS and payroll** data through a public API in two generations:
+Nmbrs (Visma Nmbrs) is cloud HR and payroll software for the Netherlands and Sweden, widely used by employers, accountants, and payroll service providers. Nmbrs exposes its HRIS and payroll data through a public API in two generations. The current, forward-looking interface is a REST API served from https://api.nmbrsapp.com, authenticated with OAuth 2.0 (Authorization Code flow via identityservice.nmbrs.com) plus a per-product subscription key, with granular scopes over companies, employees, employments, salaries, wage components, payruns, and absences. The older SOAP API (api.nmbrs.nl/soap/v3 - EmployeeService, CompanyService, DebtorService) remains available for existing integrations but is deprecated and scheduled to be retired on 1 March 2027, after which REST is the only supported API.
 
-- **REST API (current, recommended)** — served from `https://api.nmbrsapp.com`, authenticated with the **OAuth 2.0 Authorization Code** flow (`identityservice.nmbrs.com`) plus a **per-product subscription key** sent on every request. Granular OAuth scopes (e.g. `employee.info`, `employee.employment`, `employee.payment`) cover companies, employees, employments, salaries, wage components, payruns, and absences.
-- **SOAP API (legacy, deprecated)** — served from `https://api.nmbrs.nl/soap/v3` as `EmployeeService`, `CompanyService`, and `DebtorService` with several hundred operations, authenticated with a **username + API token**. The SOAP API is **scheduled to be retired on 1 March 2027**; new integrations should use REST and existing SOAP integrations should migrate.
+**Areas:** Human Resources · HRIS · Payroll · Employee Management · Absence Management · Netherlands · Sweden · SOAP · REST
 
-**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/nmbrs/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/nmbrs/refs/heads/main/apis.yml)
+## Nmbrs on APIs.io
 
-## Access & Honesty Note
+Everything profiled for Nmbrs is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/nmbrs/](https://apis.io/providers/nmbrs/)** — or go straight to one of the APIs or properties below.
 
-The Nmbrs REST API is **gated**: you must register on the [developer portal](https://developer.nmbrs.com), subscribe to a product to get a subscription key, and complete OAuth 2.0 authentication at the company/debtor level. A live unauthenticated probe of `GET https://api.nmbrsapp.com/api/companies` returns **HTTP 401**, confirming the base URL and auth model.
+### APIs (10)
 
-The full REST reference is published as an **interactive Stoplight project** rather than a downloadable OpenAPI file. The OpenAPI and collections in this repository are therefore **modeled** (`endpointsModeled`) from the documented resource groups around a **confirmed base URL and auth model** — they are a faithful representation for discovery, not a byte-for-byte copy of the vendor spec. The legacy SOAP services publish live `.asmx` operation listings and WSDLs at `https://api.nmbrs.nl/soap/v3`.
+- [Nmbrs SOAP EmployeeService (Legacy)](https://apis.io/apis/nmbrs/nmbrs-soap-employee-service/) — Legacy SOAP v3 EmployeeService (300+ operations, e.g. Employee_GetCurrent, Contract_GetAll, Salary_GetCurrent, Absence2_Insert, WageComponentFixed_Insert)…
+- [Nmbrs SOAP CompanyService (Legacy)](https://apis.io/apis/nmbrs/nmbrs-soap-company-service/) — Legacy SOAP v3 CompanyService (120+ operations, e.g. Company_GetCurrentPeriod, Run_GetList, RunRequest_Insert,…
+- [Nmbrs SOAP DebtorService (Legacy)](https://apis.io/apis/nmbrs/nmbrs-soap-debtor-service/) — Legacy SOAP v3 DebtorService for the accountant/debtor tier that owns companies (e.g. AccountantContact_GetList, Debtor_GetList). Deprecated - retiring 1…
+- [Nmbrs Absences API](https://apis.io/apis/nmbrs/nmbrs-absences-api/) — Employee absence, leave, and sickness registrations.
+- [Nmbrs Companies API](https://apis.io/apis/nmbrs/nmbrs-companies-api/) — Company (employer) records within a Nmbrs environment.
+- [Nmbrs Employees API](https://apis.io/apis/nmbrs/nmbrs-employees-api/) — Employee records and their personal / HR information.
+- [Nmbrs Employments API](https://apis.io/apis/nmbrs/nmbrs-employments-api/) — Employment contracts and employment history for an employee.
+- [Nmbrs Salaries API](https://apis.io/apis/nmbrs/nmbrs-salaries-api/) — Salary and wage information for an employee.
+- [Nmbrs Wage Components API](https://apis.io/apis/nmbrs/nmbrs-wage-components-api/) — Fixed and variable wage components used in payroll.
+- [Nmbrs Pay Runs API](https://apis.io/apis/nmbrs/nmbrs-pay-runs-api/) — Payroll runs (payruns) and their results for a company.
 
-## Tags
+### Published properties
 
-- Human Resources
-- HRIS
-- Payroll
-- Employee Management
-- Absence Management
-- Netherlands
-- Sweden
-- SOAP
-- REST
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-## Timestamps
+#### Agentic access (1)
 
-- **Created:** 2026-07-11
-- **Modified:** 2026-07-11
+Which operations an agent can call, which act, and which need a human in the loop.
 
-## APIs
+- [Nmbrs Agentic Access](https://apis.io/agentic-access/nmbrs/nmbrs-agentic-access/)
 
-### Nmbrs Companies API (REST)
+#### Collections (8)
 
-Companies (employers) inside a Nmbrs environment — the parent scope for employees and payroll. `GET https://api.nmbrsapp.com/api/companies` is a confirmed live endpoint.
+Postman and Open Collection request collections.
 
-- **Base URL:** `https://api.nmbrsapp.com`
-- [Documentation](https://developer.nmbrs.com/docs) · [API Reference](https://nmbrs.stoplight.io/docs/nmbrs-restapi) · [OpenAPI](openapi/nmbrs-openapi.yml)
+- [Nmbrs Public REST API (HR & Payroll)](https://apis.io/collections/nmbrs/open-nmbrs/)
+- [Nmbrs Public REST API (HR & Payroll) Absences API](https://apis.io/collections/nmbrs/open-nmbrs-absences-api/)
+- [Nmbrs Public REST API (HR & Payroll) Absences Companies API](https://apis.io/collections/nmbrs/open-nmbrs-companies-api/)
+- [Nmbrs Public REST API (HR & Payroll) Absences Employees API](https://apis.io/collections/nmbrs/open-nmbrs-employees-api/)
+- [Nmbrs Public REST API (HR & Payroll) Absences Employments API](https://apis.io/collections/nmbrs/open-nmbrs-employments-api/)
+- [Nmbrs Public REST API (HR & Payroll) Absences Payruns API](https://apis.io/collections/nmbrs/open-nmbrs-payruns-api/)
+- [Nmbrs Public REST API (HR & Payroll) Absences Salaries API](https://apis.io/collections/nmbrs/open-nmbrs-salaries-api/)
+- [Nmbrs Public REST API (HR & Payroll) Absences Wage Components API](https://apis.io/collections/nmbrs/open-nmbrs-wage-components-api/)
 
-### Nmbrs Employees API (REST)
+#### Security (2)
 
-Core HRIS surface — list a company's employees and read individual records including personal information. Guarded by `employee.info` scopes.
+Authentication, trust centre, and vulnerability disclosure.
 
-- **Base URL:** `https://api.nmbrsapp.com`
-- [Get employee list](https://nmbrs.stoplight.io/docs/nmbrs-restapi/a31578b069764-get-employee-list) · [OpenAPI](openapi/nmbrs-openapi.yml)
+- [Nmbrs Authentication](https://apis.io/security/nmbrs/nmbrs-authentication/)
+- [Nmbrs Domain Security](https://apis.io/security/nmbrs/nmbrs-domain-security/)
 
-### Nmbrs Employments API (REST)
+#### Plans and pricing (1)
 
-Employment contracts and history (start/end dates, contract type) under the `employee.employment` scope. Modeled endpoints.
+Published plans, tiers and prices.
 
-### Nmbrs Payroll & Payruns API (REST)
+- [Nmbrs Plans Pricing](https://apis.io/plans/nmbrs/nmbrs-plans-pricing/)
 
-Company payruns (per period/year) and employee salaries — the engine behind per-payslip billing. Salary access uses the `employee.payment` scope. Modeled endpoints.
+#### Rate limits (1)
 
-### Nmbrs Wage Components API (REST)
+Published request limits.
 
-Fixed and variable wage components applied in payroll — list and add per period/year. Modeled endpoints.
+- [Nmbrs Rate Limits](https://apis.io/rate-limits/nmbrs/nmbrs-rate-limits/)
 
-### Nmbrs Absences API (REST)
+#### FinOps (1)
 
-Employee absence, leave, and sickness registrations — list and register. Modeled endpoints.
+What the API costs to run, by operation.
 
-### Nmbrs SOAP EmployeeService (Legacy)
+- [Nmbrs Finops](https://apis.io/finops/nmbrs/nmbrs-finops/)
 
-SOAP v3 `EmployeeService` (300+ operations: `Employee_GetCurrent`, `Contract_GetAll`, `Salary_GetCurrent`, `Absence2_Insert`, `WageComponentFixed_Insert`, …). Username + API token. **Retiring 2027-03-01.**
+## Where to find this API
 
-- **Base URL:** `https://api.nmbrs.nl/soap/v3` · [WSDL](https://api.nmbrs.nl/soap/v3/EmployeeService.asmx?WSDL)
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
 
-### Nmbrs SOAP CompanyService (Legacy)
-
-SOAP v3 `CompanyService` (120+ operations: `Company_GetCurrentPeriod`, `Run_GetList`, `RunRequest_Insert`, `SalaryDocuments_GetAllPayslipsPDFByRunCompany`, `Journals_GetByRunCompany`, `WageTax_GetList`, …). **Retiring 2027-03-01.**
-
-- **Base URL:** `https://api.nmbrs.nl/soap/v3` · [WSDL](https://api.nmbrs.nl/soap/v3/CompanyService.asmx?WSDL)
-
-### Nmbrs SOAP DebtorService (Legacy)
-
-SOAP v3 `DebtorService` for the accountant/debtor tier (`Debtor_GetList`, `AccountantContact_GetList`, …). **Retiring 2027-03-01.**
-
-- **Base URL:** `https://api.nmbrs.nl/soap/v3` · [WSDL](https://api.nmbrs.nl/soap/v3/DebtorService.asmx?WSDL)
-
-## Common Properties
-
-- [Authentication](authentication/nmbrs-authentication.yml)
-- [Domain Security](security/nmbrs-domain-security.yml)
-- [LinkedIn](https://www.linkedin.com/company/nmbrs)
 - [Website](https://www.nmbrs.com)
 - [Documentation](https://developer.nmbrs.com/docs)
-- [API Reference](https://nmbrs.stoplight.io/docs/nmbrs-restapi)
-- [Sign Up](https://developer.nmbrs.com)
-- [Plans](plans/nmbrs-plans-pricing.yml)
-- [Rate Limits](rate-limits/nmbrs-rate-limits.yml)
-- [Fin Ops](finops/nmbrs-finops.yml)
+- [API reference](https://nmbrs.stoplight.io/docs/nmbrs-restapi)
+- [Sign up](https://developer.nmbrs.com)
+- [Blog](https://www.nmbrs.com/blog)
 
-## Pricing
+## API Evangelist rating
 
-Nmbrs bills **per payslip** — you pay only for employees who actually receive a payslip in a given month, with no charge for inactive employees and no per-login/per-user fees. Business packages are **Essential, Advanced, Advanced Pro**; there is a separate track for accountants / payroll service providers. Country pricing differs (NL business from ~€69/mo for up to 10 employees; SE from ~99 kr/mo). See [plans](plans/nmbrs-plans-pricing.yml).
+**Kin Score 28.7** — thin · rubric 0.24.0 · scored 2026-10-17
 
-## Maintainers
+| Facet | Score |
+|---|---|
+| Discoverability | 66.1 |
+| Contract quality | 50.2 |
+| Contract governance | 0.0 |
+| Operational transparency | 5.3 |
+| Developer ergonomics | 32.1 |
+| Access clarity | 21.1 |
 
-**FN:** Kin Lane
-**Email:** kin@apievangelist.com
+**Agent readiness 22.9** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | negotiable (partial credit) |
+| Idempotency | — |
+| Error Semantics | — |
+| OpenAPI Examples | — |
+| Rate Limit Signal | derived (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | documented (partial credit) |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+
+**Regulatory alignment 11.8** — Employment & Payroll
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/nmbrs/](https://apis.io/providers/nmbrs/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Nmbrs: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/nmbrs/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
